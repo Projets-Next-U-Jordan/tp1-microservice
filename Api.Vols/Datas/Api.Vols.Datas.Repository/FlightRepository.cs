@@ -61,8 +61,13 @@ namespace Api.Vols.Datas.Repository
         /// <returns></returns>
         public List<Flight> GetFlights()
         {
-            return _liteDbContext.Database.GetCollection<Flight>("flights")
+            var flights =  _liteDbContext.Database.GetCollection<Flight>("flights")
                 .FindAll().ToList();
+            foreach(var flight in flights)
+            {
+                flight.IdToString = flight.Id.ToString();
+            }
+            return flights;
         }
 
         /// <summary>

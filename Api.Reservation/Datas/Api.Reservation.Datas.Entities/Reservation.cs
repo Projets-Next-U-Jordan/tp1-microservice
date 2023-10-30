@@ -14,7 +14,7 @@ namespace Api.Reservation.Datas.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int UtilisateurId { get; set; }
-        public Utilisateur Utilisateur { get; set; }
+        public virtual Utilisateur Utilisateur { get; set; }
         public string NumeroVol { get; set; }
         public string NumeroSiege { get; set; }
         public StatutReservation Statut { get; set; }

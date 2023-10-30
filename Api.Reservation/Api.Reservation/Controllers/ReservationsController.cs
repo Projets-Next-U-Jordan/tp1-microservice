@@ -1,4 +1,5 @@
-﻿using Api.Reservation.Business.Service;
+﻿using Api.Reservation.Business.Models;
+using Api.Reservation.Business.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Reservation.Controllers
@@ -24,9 +25,22 @@ namespace Api.Reservation.Controllers
         // POST api/Reservations
         [HttpPost]
         [ProducesResponseType(typeof(Datas.Entities.Reservation), 200)]
-        public async Task<IActionResult> CreateReservationAsync([FromBody] Datas.Entities.Reservation reservation)
+        public async Task<IActionResult> CreateReservationAsync([FromBody] CreateReservationDto reservation)
         {
-            return Ok(await _reservationService.CreateReservationAsync(reservation));
+            try
+            {
+                var reservationToCreate = new Datas.Entities.Reservation()
+                {
+                    UtilisateurId = reservation.UtilisateurId,
+                    NumeroVol = reservation.NumeroVol,
+                    NumeroSiege = reservation.NumeroSiege,
+                    Statut = Datas.Entities.StatutReservation.Active,
+                    Changement = DateTime.Now
+                };
+
+                return Ok(await _reservationService.CreateReservationAsync(reservationToCreate));
+            }
+            catch (Exception e) { return Problem(e.Message, e.StackTrace); }
         }
 
         // GET: api/Reservations

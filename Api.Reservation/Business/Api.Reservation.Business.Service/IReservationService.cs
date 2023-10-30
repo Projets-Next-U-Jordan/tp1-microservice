@@ -27,5 +27,6 @@ namespace Api.Reservation.Business.Service
         /// </summary>
         /// <returns></returns>
         Task<List<Datas.Entities.Reservation>> GetReservationsAsync();
+
     }
 }

@@ -12,6 +12,8 @@ namespace Api.Vols.Datas.Entities
         /// </value>
         public ObjectId Id { get; set; }
 
+        public string IdToString { get; set; }
+
         /// <summary>
         /// Gets or sets the flight number.
         /// </summary>
