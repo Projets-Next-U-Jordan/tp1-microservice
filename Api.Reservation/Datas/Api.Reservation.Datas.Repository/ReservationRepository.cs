@@ -49,7 +49,7 @@ namespace Api.Reservation.Datas.Repository
         /// </summary>
         /// <param name="nomUtilisateur">The nom utilisateur.</param>
         /// <returns></returns>
-        public async Task<List<Entities.Reservation>> GetReservationsByUtilisateurAsync(string nomUtilisateur)
+        public async Task<List<Datas.Entities.Reservation>> GetReservationsByUtilisateurAsync(string nomUtilisateur)
         {
             return await _context.Reservations
                 .Where(r => r.Utilisateur.Nom == nomUtilisateur)
@@ -62,11 +62,24 @@ namespace Api.Reservation.Datas.Repository
         /// </summary>
         /// <param name="id">L'identifiant de la reservation</param>
         /// <returns></returns>
-        public async Task<Entities.Reservation> GetReservationByIdAsync(int id)
+        public async Task<Datas.Entities.Reservation> GetReservationByIdAsync(int id)
         {
             return await _context.Reservations
                 .Include(r => r.Utilisateur)
                 .FirstOrDefaultAsync(r => r.Id == id)
+                .ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Cette méthode permet de recupérer les reservations par l'identifiant d'un utilisateur
+        /// </summary>
+        /// <param name="id">L'identifiant d'un utilisateur</param>
+        /// <returns></returns>
+        public async Task<List<Entities.Reservation>> GetReservationByUtilisateurIdAsync(int id)
+        {
+            return await _context.Reservations
+                .Where(r => r.Utilisateur.Id == id)
+                .ToListAsync()
                 .ConfigureAwait(false);
         }
 

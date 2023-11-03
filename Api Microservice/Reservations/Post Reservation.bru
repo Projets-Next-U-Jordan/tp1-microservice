@@ -1,0 +1,19 @@
+meta {
+  name: Post Reservation
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:5185/api/Reservations
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "utilisateurId": 3,
+    "numeroVol": "AV123",
+    "numeroSiege": "A2"
+  }
+}

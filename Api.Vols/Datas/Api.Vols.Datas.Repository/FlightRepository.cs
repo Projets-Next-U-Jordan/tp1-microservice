@@ -56,6 +56,18 @@ namespace Api.Vols.Datas.Repository
         }
 
         /// <summary>
+        /// Cette méthode permet de recupérer les informations d'un vol par son numéro
+        /// </summary>
+        /// <param name="flight_number">Le numéro du vol</param>
+        /// <returns></returns>
+        public Flight GetFlightByNumber(string flight_number)
+        {
+            BsonExpression searchExpression = BsonExpression.Create("flightNumber = $", flight_number);
+            return _liteDbContext.Database.GetCollection<Flight>("flights")
+                .FindOne(searchExpression);
+        }
+
+        /// <summary>
         /// Cette méthode permet de recupérer la liste des vols
         /// </summary>
         /// <returns></returns>
@@ -93,5 +105,23 @@ namespace Api.Vols.Datas.Repository
             flights.Update(flight);
             return flight;
         }
+
+        /// <summary>
+        /// Cette méthode permet de mettre à jour le status d'un siege
+        /// </summary>
+        /// <param name="flight">les nouvelles données du vol</param>
+        /// <returns></returns>
+        public Seat? SetSeatStatus(string numeroVol, string nomSiege, string status) {
+            var flight = GetFlightByNumber(numeroVol);
+            if (flight == null) return null;
+            
+            var siege = flight.Sieges.Find((s) => s.Name == nomSiege);
+            if (siege == null) return null;
+
+            siege.Status = status;
+            UpdateFlight(flight);
+            return siege;
+        }
+
     }
 }

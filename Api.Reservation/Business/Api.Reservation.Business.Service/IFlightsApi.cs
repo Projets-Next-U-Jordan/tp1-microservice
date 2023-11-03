@@ -7,5 +7,8 @@ namespace Api.Reservation.Business.Service
     {
         [Get("/api/Flights/{numeroVol}/siege/{nomSiege}")]
         Task<Seat> GetSiegeStatusAsync(string numeroVol, string nomSiege);
+
+        [Put("/api/Flights/{numeroVol}/siege/{nomSiege}")]
+        Task<Seat> SetSiegeStatusAsync(string numeroVol, string nomSiege, int status);
     }
 }

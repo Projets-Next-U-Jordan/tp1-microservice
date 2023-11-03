@@ -28,5 +28,11 @@ namespace Api.Reservation.Business.Service
         /// <returns></returns>
         Task<List<Datas.Entities.Reservation>> GetReservationsAsync();
 
+                /// <summary>
+        /// Cette méthode permet de recupérer la liste des reservations d'un utilisateur
+        /// </summary>
+        /// <returns></returns>
+        Task<List<Datas.Entities.Reservation>> GetReservationsByUtilisateurAsync(int utilisateurID);
+        Task DeleteReservationByIdAsync(int id);
     }
 }

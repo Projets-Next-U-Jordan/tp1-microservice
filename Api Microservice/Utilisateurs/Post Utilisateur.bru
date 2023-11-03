@@ -1,0 +1,20 @@
+meta {
+  name: Post Utilisateur
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:5185/api/Utilisateurs
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "nom": "Coulon",
+    "prenom": "Jordan",
+    "email": "idk@idk.idk",
+    "dateNaissance": "2003-09-22T00:00:00.000Z"
+  }
+}

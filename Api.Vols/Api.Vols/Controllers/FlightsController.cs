@@ -86,7 +86,7 @@ namespace Api.Vols.Controllers
             return Ok(success);
         }
 
-
+        // GET api/{flight}/siege/{seat}
         [HttpGet("{numeroVol}/siege/{nomSiege}")]
         [ProducesResponseType(typeof(Seat), 200)]
         public IActionResult GetSeatStatus(string numeroVol, string nomSiege)
@@ -97,6 +97,18 @@ namespace Api.Vols.Controllers
             {
                 return NotFound();
             }
+
+            return Ok(seat);
+        }
+
+        // PUT api/{flight}/siege/{seat}
+        [HttpPut("{numeroVol}/siege/{nomSiege}")]
+        [ProducesResponseType(typeof(Seat), 200)]
+        public IActionResult SetSeatStatus(string numeroVol, string nomSiege, string status)
+        {
+            var seat = _flightRepository.SetSeatStatus(numeroVol, nomSiege, status);
+
+            if (seat == null) return NotFound();
 
             return Ok(seat);
         }

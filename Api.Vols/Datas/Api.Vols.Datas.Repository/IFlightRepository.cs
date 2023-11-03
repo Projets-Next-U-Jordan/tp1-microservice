@@ -46,5 +46,6 @@ namespace Api.Vols.Datas.Repository
         /// <param name="nomSiege">Le nom du siege.</param>
         /// <returns></returns>
         Seat? GetSeatStatus(string numeroVol, string nomSiege);
+        Seat? SetSeatStatus(string numeroVol, string nomSiege, string status);
     }
 }

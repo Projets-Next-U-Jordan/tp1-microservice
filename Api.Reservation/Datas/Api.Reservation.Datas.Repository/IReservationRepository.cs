@@ -1,52 +1,60 @@
 ﻿
-namespace Api.Reservation.Datas.Repository
+using Api.Reservation.Datas.Entities;
+/// <summary>
+/// Cette interface définit le contrat pour un référentiel de réservation.
+/// </summary>
+public interface IReservationRepository
 {
-    public interface IReservationRepository
-    {
-        /// <summary>
-        /// Cette méthode permet de recupérer la liste des reservations
-        /// </summary>
-        /// <returns></returns>
-        Task<List<Entities.Reservation>> GetReservationsAsync();
+    /// <summary>
+    /// Récupère une liste de toutes les réservations.
+    /// </summary>
+    /// <returns>Une liste de réservations.</returns>
+    Task<List<Reservation>> GetReservationsAsync();
 
-        /// <summary>
-        /// Cette méthode permet de recupérer les reservations par numéro de vol
-        /// </summary>
-        /// <param name="numeroVol">le numéro du vol.</param>
-        /// <returns></returns>
-        Task<List<Entities.Reservation>> GetReservationsByNumeroVolAsync(string numeroVol);
+    /// <summary>
+    /// Récupère une liste de réservations par numéro de vol.
+    /// </summary>
+    /// <param name="numeroVol">Le numéro de vol.</param>
+    /// <returns>Une liste de réservations.</returns>
+    Task<List<Reservation>> GetReservationsByNumeroVolAsync(string numeroVol);
 
-        /// <summary>
-        /// Cette méthode permet de recupérer les reservations par le nom de l'utilisateur
-        /// </summary>
-        /// <param name="nomUtilisateur">The nom utilisateur.</param>
-        /// <returns></returns>
-        Task<List<Entities.Reservation>> GetReservationsByUtilisateurAsync(string nomUtilisateur);
+    /// <summary>
+    /// Récupère une liste de réservations par nom d'utilisateur.
+    /// </summary>
+    /// <param name="nomUtilisateur">Le nom d'utilisateur.</param>
+    /// <returns>Une liste de réservations.</returns>
+    Task<List<Reservation>> GetReservationsByUtilisateurAsync(string nomUtilisateur);
 
-        /// <summary>
-        /// Cette méthode permet de recupérer les informations d'une reservation par son identifiant
-        /// </summary>
-        /// <param name="id">L'identifiant de la reservation</param>
-        /// <returns></returns>
-        Task<Entities.Reservation> GetReservationByIdAsync(int id);
+    /// <summary>
+    /// Récupère une liste de réservations par ID d'utilisateur.
+    /// </summary>
+    /// <param name="idUtilisateur">L'ID d'utilisateur.</param>
+    /// <returns>Une liste de réservations.</returns>
+    Task<List<Reservation>> GetReservationByUtilisateurIdAsync(int idUtilisateur);
 
-        /// <summary>
-        /// Cette methode permet de créer une nouvelle reservation.
-        /// </summary>
-        /// <param name="reservation">Les informations de la nouvelle reservation</param>
-        /// <returns></returns>
-        Task<Entities.Reservation> CreateReservationAsync(Entities.Reservation reservation);
+    /// <summary>
+    /// Récupère une réservation par ID.
+    /// </summary>
+    /// <param name="id">L'ID de la réservation.</param>
+    /// <returns>La réservation.</returns>
+    Task<Reservation> GetReservationByIdAsync(int id);
 
-        /// <summary>
-        /// Cette méthode permet de mettre à jour les informations d'une reservation
-        /// </summary>
-        /// <param name="reservation">les informations modifié d'une reservation.</param>
-        Task UpdateReservation(Entities.Reservation reservation);
+    /// <summary>
+    /// Crée une nouvelle réservation.
+    /// </summary>
+    /// <param name="reservation">Les informations de réservation.</param>
+    /// <returns>La réservation créée.</returns>
+    Task<Reservation> CreateReservationAsync(Reservation reservation);
 
-        /// <summary>
-        /// Cette méthode permet de supprimer une reservation
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        Task DeleteReservationAsync(int id);
-    }
+    /// <summary>
+    /// Met à jour une réservation.
+    /// </summary>
+    /// <param name="reservation">Les informations de réservation mises à jour.</param>
+    Task UpdateReservation(Reservation reservation);
+
+    /// <summary>
+    /// Supprime une réservation.
+    /// </summary>
+    /// <param name="id">L'ID de la réservation.</param>
+    Task DeleteReservationAsync(int id);
 }

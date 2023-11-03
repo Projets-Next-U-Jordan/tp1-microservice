@@ -1,0 +1,20 @@
+meta {
+  name: Put Utilisateur
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:5185/api/Utilisateurs/3
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "nom": "string",
+    "prenom": "string",
+    "email": "string",
+    "dateNaissance": "2023-11-03T09:10:07.144Z"
+  }
+}
